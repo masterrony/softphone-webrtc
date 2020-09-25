@@ -1,0 +1,84 @@
+<div class="background" {{action "closeModal"}} >
+  <audio></audio>
+  <div class="close" role="button" {{action "closeModal"}}>
+    <span class="control-icon">
+      <svg class="icon"><use href="img/icons.svg#close"></use></svg>
+    </span>
+  </div>
+  <div class="window" tabindex="1" role="dialog">
+    <div class="content">
+      <div class="number">
+        <input type="text" value="{{number}}" placeholder="Phone number" class="dialpad-number">
+      </div>
+      <div class="dial-pad">
+        <div class="dial-pad-row">
+          <div class="dial-pad-cell" role="button" {{action "keyPress" 1}}>
+            <div class="dial-pad-number">1</div>
+            <div class="dial-pad-letter"></div>
+          </div>
+          <div class="dial-pad-cell" role="button" {{action "keyPress" 2}}>
+            <div class="dial-pad-number">2</div>
+            <div class="dial-pad-letter">ABC</div>
+          </div>
+          <div class="dial-pad-cell" role="button" {{action "keyPress" 3}}>
+            <div class="dial-pad-number">3</div>
+            <div class="dial-pad-letter">DEF</div>
+          </div>
+        </div>
+        <div class="dial-pad-row">
+          <div class="dial-pad-cell" role="button" {{action "keyPress" 4}}>
+            <div class="dial-pad-number">4</div>
+            <div class="dial-pad-letter">GHI</div>
+          </div>
+          <div class="dial-pad-cell" role="button" {{action "keyPress" 5}}>
+            <div class="dial-pad-number">5</div>
+            <div class="dial-pad-letter">JKL</div>
+          </div>
+          <div class="dial-pad-cell" role="button" {{action "keyPress" 6}}>
+            <div class="dial-pad-number">6</div>
+            <div class="dial-pad-letter">MNO</div>
+          </div>
+        </div>
+        <div class="dial-pad-row">
+          <div class="dial-pad-cell" role="button" {{action "keyPress" 7}}>
+            <div class="dial-pad-number">7</div>
+            <div class="dial-pad-letter">PQRS</div>
+          </div>
+          <div class="dial-pad-cell" role="button" {{action "keyPress" 8}}>
+            <div class="dial-pad-number">8</div>
+            <div class="dial-pad-letter">TUV</div>
+          </div>
+          <div class="dial-pad-cell" role="button" {{action "keyPress" 9}}>
+            <div class="dial-pad-number">9</div>
+            <div class="dial-pad-letter">WXYZ</div>
+          </div>
+        </div>
+        <div class="dial-pad-row">
+          <div class="dial-pad-cell" role="button" {{action "keyPress" "*"}}>
+            <div class="dial-pad-number">*</div>
+            <div class="dial-pad-letter"></div>
+          </div>
+          <div class="dial-pad-cell" role="button" {{action "keyPress" "0"}}>
+            <div class="dial-pad-number">0</div>
+            <div class="dial-pad-letter">+</div>
+          </div>
+          <div class="dial-pad-cell" role="button" {{action "keyPress" "#"}}>
+            <div class="dial-pad-number">#</div>
+            <div class="dial-pad-letter"></div>
+          </div>
+        </div>
+      </div>
+      <div class="call" role="button" {{action "makeCall"}}>
+        <span class="control-icon">
+          <svg class="icon"><use href="img/icons.svg#call"></use></svg>
+        </span>
+      </div>
+      {{!-- <hr />
+      <div class="call" role="button" {{action "makeVideoCall"}}>
+        <span class="control-icon">
+          <svg class="icon"><use href="img/icons.svg#video"></use></svg>
+        </span>
+      </div> --}}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,129 @@
+<div class="container">
+  {{notification-container position="top" zindex=4 classNames="notification-container"}}
+  <audio id="incoming-call" src="/softphone/ringtone.wav"></audio>
+  <header>
+    <div class="logo">
+      <img src="img/logo.svg" alt="RingRx Logo">
+    </div>
+  </header>
+  <main>
+    <aside class="contacts {{if displayContacts "open"}}">      
+      <div class="logo-row-container">
+        <div class="logo">
+          <img src="img/logo.svg" alt="RingRx Logo">        
+        </div>
+        <div class="reg-status" {{action "reregister"}}>
+          {{svg-icon class=(if isRegistered "inline-icon reg-icon green" "inline-icon reg-icon red pointer") icon="sip-connected"}}
+          {{#if (not isRegistered) }}
+            {{#ember-tooltip delay=1000 side="left" }}
+              {{registrationMessage}}
+            {{/ember-tooltip}}
+          {{/if}}
+        </div>
+      </div>
+      {{#if showMenu}}
+        <div class="profile">
+          <div class="menu-header" {{action "toggleMenu"}}>
+            <span role="button" >
+              {{userAgent.configuration.uri}}
+              {{svg-icon class="inline-icon" icon="arrow-down"}}
+            </span>
+          </div>
+          <div class="menu-content" {{action "options"}}>
+            <span role="button" >Options</span>
+          </div>
+          <div class="menu-content" {{action "logout"}}>
+            <span role="button" >Logout</span>
+          </div>
+        </div>
+      {{else}}
+        <div class="profile">
+          <div class="menu-header" {{action "toggleMenu"}}>
+            <span role="button" >
+              {{userAgent.configuration.uri}}
+              {{svg-icon class="inline-icon" icon="arrow-up"}}
+            </span>
+          </div>
+        </div>
+      {{/if}}
+      <div class="phone-dial">
+        {{input
+          id="dashboardEnterPhone"
+          name=filter
+          value=filter
+          placeholder="Enter phone"
+        }}
+        {{#if showPad}}
+          <div class="call-button" role="button" {{action "showDialpad"}}>
+            {{svg-icon class="control-icon light-gray" icon="dots"}}
+          </div>
+        {{else}}
+          <div class="call-button" role="button" {{action "makeCall"}}>
+            {{svg-icon class="control-icon light-gray" icon="call"}}
+          </div>
+          <div class="call-button call-button-second" role="button" {{action "startConversation"}}>
+            {{svg-icon class="control-icon light-gray" icon="message"}}
+          </div>
+        {{/if}}
+      </div>
+      {{contacts-list        
+        filter=filter        
+      }}
+    </aside>
+    {{messages-list
+      from=userAgent.configuration.phone
+      display=displayMessages
+    }}
+    <aside class="calls">
+      <div class="header">                  
+        <div class="header-left">
+          <span>Calls</span>&nbsp;&nbsp;&nbsp;&nbsp;
+          {{#if isDND }}
+            <div class="toggle-dnd" {{action "disableDND"}}>
+              {{svg-icon class="control-icon red" icon="dnd-on" }}
+              {{#ember-tooltip delay=500 side="right" }}
+                Disable DND
+              {{/ember-tooltip}}
+            </div>
+          {{else}}
+            <div class="toggle-dnd" {{action "enableDND"}} >
+              {{svg-icon class="control-icon light-gray" icon="dnd-off" }}
+              {{#ember-tooltip delay=500 side="right" }}
+                Enable DND
+              {{/ember-tooltip}}
+            </div>
+          {{/if}}
+        </div>
+        <div class="sound-control">
+          {{sound-control volume=microphoneVolume icon="microphone" showSlider=false setVolume=(action "setMicrophoneVolume") }}
+          {{sound-control volume=callVolume icon="volume" showSlider=true setVolume=(action "setCallVolume") }}
+        </div>
+      </div>
+      <div class="calls-list">
+        {{calls-list showDialpad=showDialpad sendKey=(action "sendKey")}}
+      </div>
+    </aside>
+  </main>
+</div>
+{{dialpad-modal
+  show=showDialpad
+  number=filter
+  sendKey=(action "sendKey")
+  makeCall=(action "makeCall")
+}}
+{{transfer-modal
+  show=showTransfer
+  transferCall=(action "transferCall")
+}}
+{{call-modal
+  show=showIncomingModal
+  call=incomingCall
+  name=incomingSession.request.from.displayName
+  phone=incomingSession.request.from.uri.user
+  acceptCall=(action "acceptCall")
+  rejectCall=(action "rejectCall")
+  ignoreCall=(action "ignoreCall")
+}}
+{{options-modal
+  show=showOptions
+}}

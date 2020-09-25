@@ -1,0 +1,15 @@
+@function _color($key) {
+	@return map-get($palette, $key);
+}
+
+@function _size($key) {
+  @return map-get($size, $key);
+}
+
+@function _duration($key) {
+	@return map-get($duration, $key);
+}
+
+@function _misc($key) {
+	@return map-get($misc, $key);
+}

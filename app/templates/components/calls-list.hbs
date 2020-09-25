@@ -1,0 +1,51 @@
+<div class="rh-container">
+  <div class="video-container">
+    <audio id="localRingbacktone" autoplay class="hidden"></audio>
+    <video id="remoteVideo" autoplay class={{if isVideoActive "" "hidden"}}></video>
+    <video id="localVideo" muted="true" autoplay class={{if isVideoActive "" "hidden"}}></video>
+    {{#if isVideoActive}}
+      <div class="video-controls">
+        <div class="actions">
+          <div class="action-icons">
+            <div class="action" role="button" {{action "fullScreen"}}>
+              <span class="call-action-icon">
+                <span class="icon-wrapper bg">
+                  {{svg-icon class="control-icon light-gray" icon="full-screen"}}
+                  {{!-- <svg class="icon">
+                    <use href="img/icons.svg#full-screen"></use>
+                  </svg> --}}
+                </span>
+              </span>
+              <span class="call-icon-text">Full Screen</span>
+            </div>
+            <div class="action" role="button" {{action "disableVideo"}}>
+              <span class="call-action-icon">
+                <span class="icon-wrapper bg">
+                  <svg class="icon">
+                    <use href="img/icons.svg#turn-off-video"></use>
+                  </svg>
+                </span>
+              </span>
+              <span class="call-icon-text">Disable Video</span>
+            </div>
+            <div class="action" role="button" {{action "enableVideo"}}>
+              <span class="call-action-icon">
+                <span class="icon-wrapper bg">
+                  <svg class="icon">
+                    <use href="img/icons.svg#video"></use>
+                  </svg>
+                </span>
+              </span>
+              <span class="call-icon-text">Enable Video</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    {{/if}}
+  </div>
+  <div class="calls-container">
+    {{#each calls as |call|}}
+      {{call-row call=call showDialpad=showDialpad sendKey=sendKey}}
+    {{/each}}
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="background">
+  <div class="close" role="button" {{action "closeModal"}}>
+    <span class="control-icon">
+      <svg class="icon"><use href="img/icons.svg#close"></use></svg>
+    </span>
+  </div>
+  <div class="window">
+    <div class="content">
+      <div class="header">
+        <span>Incoming call</span>
+        <span class="inline-icon">
+          <svg class="icon"><use href="img/icons.svg#call"></use></svg>
+        </span>
+      </div>
+      <div class="name">{{name-format call.name}}</div>
+      <div class="number">{{call.phone}}</div>
+      <div class="actions">
+        <div class="action" role="button" {{action "acceptCall"}}>
+          <div class="action-icon green">
+            <span class="icon-wrapper white">
+              <svg class="icon"><use href="img/icons.svg#call"></use></svg>
+            </span>
+          </div>
+          <div class="icon-text">Accept</div>
+        </div>
+        <div class="action" role="button" {{action "rejectCall"}}>
+          <div class="action-icon red">
+            <span class="icon-wrapper white">
+              <svg class="icon"><use href="img/icons.svg#hangup"></use></svg>
+            </span>
+          </div>
+          <div class="icon-text">Reject</div>
+        </div>
+        <div class="action" role="button" {{action "ignoreCall"}}>
+          <div class="action-icon">
+            <span class="icon-wrapper">
+              <svg class="icon"><use href="img/icons.svg#ignore"></use></svg>
+            </span>
+          </div>
+          <div class="icon-text">Ignore</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

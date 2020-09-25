@@ -1,0 +1,40 @@
+<div class="info">
+  {{#if contact.hasNewMessages}}
+    {{svg-icon
+      class="inline-icon blue new-messages"
+      icon="message-new"
+    }}
+  {{/if}}
+  <div class="name">
+    <span>{{name-format contact.name}}</span>
+    {{#if canGetPresence}}
+      <div class="action" role="button" {{action "toggleFavorite"}}>
+        {{svg-icon
+          class=(if contact.favorite "inline-icon blue" "inline-icon light-gray")
+          icon="star"
+        }}
+      </div>
+    {{/if}}    
+  </div>
+  <div class="status">{{contact.status}}</div>
+</div>
+{{!-- {{#if contact.active}}
+  <div class="call-time">
+    {{svg-icon class="call-time-icon" icon="call"}}
+    <span>{{seconds-to-time (time-duration currentTime contact.startTime)}}</span>
+  </div>
+{{else}} --}}
+  <div class="actions">
+    {{!-- {{#if canGetPresence}}
+      <div class="action" role="button" {{action "makeVideoCall"}}>
+        {{svg-icon class="contact-action-icon" icon="video"}}
+      </div>
+    {{/if}} --}}
+    <div class="action" role="button" {{action "makeCall"}}>
+      {{svg-icon class="contact-action-icon" icon="call"}}
+    </div>
+    <div class="action">
+      {{svg-icon class="contact-action-icon" icon="message"}}
+    </div>
+  </div>
+{{!-- {{/if}} --}}

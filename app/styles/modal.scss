@@ -1,0 +1,291 @@
+.modal {
+
+  .background {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    top: 0;
+    z-index: 3;
+    background-color: _color(call-light);
+    opacity: 0;
+  }
+
+  &.open {
+
+    .background {
+      display: flex;
+      animation: fadein _duration(default) _misc(animation);
+      animation-fill-mode: forwards;
+    }
+  }
+
+  .close {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 1rem;
+    background-color: _color(base-light);
+    z-index: 4;
+    cursor: pointer;
+
+    .control-icon {
+      color: _color(base-bg);
+    }
+  }
+
+  .window {
+    position: relative;
+    background-color: _color(base-bg);
+    border-radius: 2px;
+  }
+
+  &.dialpad {
+    .window {
+      flex-basis: 28.5rem;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .number {
+      padding: 4rem 0;
+      font-size: 2rem;
+      display: flex;
+      flex-grow: 9999;
+      align-self: center;
+
+      input {
+        width: 20rem;
+        border: none;
+        outline: none;
+        text-align: center;
+      }
+    }
+
+    .dial-pad {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      padding: 0 3rem;
+    }
+
+    .dial-pad-row {
+      display: flex;
+      justify-content: space-between;
+      margin: 1.5rem 0;
+    }
+
+    .dial-pad-cell {
+      display: flex;
+      flex-direction: column;
+      flex-basis: 4rem;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .dial-pad-number {
+      font-size: 2rem;
+      color: _color(theme-blue);
+      line-height: 1;
+    }
+
+    .dial-pad-letter {
+      color: _color(call-light);
+    }
+
+    .call {
+      height: 2rem;
+      padding: 1rem;
+      color: _color(base-bg);
+      background-color: _color(theme-green);
+      cursor: pointer;
+
+      .control-icon {
+        color: _color(base-bg);
+      }
+    }
+  }
+
+  &.calling {
+
+    .window {
+      flex-basis: 28.5rem;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 2rem 0 1rem 0;
+    }
+
+    .header {
+      font-size: 0.75rem;
+      color: _color(theme-green);
+
+      .inline-icon {
+        color: _color(theme-green);
+        width: 1rem;
+      }
+    }
+
+    .name {
+      font-size: 2rem;
+      color: _color(base-light);
+    }
+
+    .number {
+      color: _color(call-light);
+    }
+
+    .actions {
+      display: flex;
+      margin-top: 3rem;
+    }
+
+    .action {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 0 0 1.5rem;
+
+      &:first-child {
+        margin: 0;
+      }
+    }
+
+    .action-icon {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 2.25rem;
+      width: 4.5rem;
+      height: 4.5rem;
+      color: _color(base-bg);
+      background-color: _color(base-bg);
+      cursor: pointer;
+
+      &.green {
+        background-color: _color(theme-green);
+      }
+
+      &.red {
+        background-color: _color(theme-red);
+      }
+    }
+
+    .icon-wrapper {
+      width: 1.5rem;
+      height: 1.5rem;
+      color: _color(base-light);
+
+      &.white {
+        color: _color(base-bg);
+      }
+    }
+
+    .icon-text {
+      margin: .75rem 0;
+      font-size: 0.75rem;
+      color: _color(call-light);
+    }
+  }
+
+  &.options {    
+
+    .window {
+      flex-basis: 28.5rem;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      margin: .5rem .5rem 1rem .5rem;
+    }
+
+    .header {
+      font-size: 1.75rem;
+      color: _color(base-light);
+      border-bottom: solid 1px grey;
+      text-align: center;
+    }
+
+    .options-row {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      margin: .75rem 0;
+      cursor: pointer;
+
+      label {
+        cursor: pointer;
+      }
+      
+      input[type="checkbox"] {
+              cursor: pointer;
+      }
+    }
+
+    .footer {
+      height: 1.75rem;
+      padding: 1rem;
+      color: _color(base-bg);
+      background-color: grey;
+      cursor: pointer;
+      text-align: center;
+    }
+  }
+
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .modal {
+
+    &.dialpad .window,
+    &.calling .window {
+      flex-basis: 100vw;
+
+      .content {
+        height: 100vh;
+      }
+    }
+
+    .dial-pad {
+      flex-grow: 9999;
+    }
+
+    .number {
+      padding: 0;
+    }
+  }
+}

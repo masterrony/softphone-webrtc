@@ -1,0 +1,29 @@
+$palette: (
+  base: rgb(0, 0, 0),
+  base-light: rgb(66, 66, 66),
+  base-ultra-light: rgba(66, 66, 66, .3),
+  base-bg: rgb(255, 255, 255),
+  placeholder: rgba(0, 0, 0, .3),
+  border: rgba(216, 216, 216, .3),
+  border-dark: rgba(216, 216, 216, .6),
+  icon: rgb(216, 216, 216),
+  contact-light: rgba(0, 0, 0, .6),
+  contact-inverted: rgba(255, 255, 255, 0.6),
+  hover: rgba(45, 165, 241, 0.06),
+  theme-green: rgb(76, 175, 80),
+  theme-blue: rgb(45, 165, 241),
+  theme-red: rgb(244, 67, 54),
+  call-light: rgba(66, 66, 66, .6),
+);
+
+$size: (
+  radius: 2px,
+);
+
+$duration: (
+  default: .5s,
+);
+
+$misc: (
+  animation: ease-out,
+);

@@ -1,0 +1,34 @@
+<div class="header">
+  <div class="menu" role="button" {{action "closeMessages"}}>
+    {{svg-icon class="menu-icon" icon="arrow-left"}}
+  </div>
+  <div class="title">SMS</div>
+  <div class="user">
+    <div class="name">{{name-format contact.name}}</div>
+    <div class="phone">{{phone-format contactPhone}}</div>
+  </div>
+  <div class="menu">
+    {{svg-icon class="menu-icon blue" icon="call"}}
+  </div>
+</div>
+<div class="messages-list">
+  {{#each activeMessages as |message|}}
+    {{#unless message.sameMilestone}}
+      <div class="day-divider">{{message.milestone.label}}</div>
+    {{/unless}}
+    <div class="message {{if (is-my-message message.from from) "reply"}}">
+      <div class="text">{{message.text}}</div>
+      <div class="time">{{date-format message.createdAt}}</div>
+    </div>
+  {{/each}}
+</div>
+<div class="input-group">
+  {{input
+    name=reply
+    value=reply
+    class="sms-input"
+    enter=(action "sendMessage")
+    placeholder=(concat "SMS with " (phone-format contactPhone) "…")
+  }}
+  <button disabled={{isMessageEmpty}} {{action "sendMessage"}}>Send</button>
+</div>

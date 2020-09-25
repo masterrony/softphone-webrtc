@@ -1,0 +1,22 @@
+<div class="container">
+  {{notification-container position="top" zindex=4 classNames="notification-container"}}
+  <div class="login">
+    <div class="logo">
+      <img src="img/logo.svg" alt="RingRx Logo">
+    </div>
+    <form {{action "authenticate" on="submit"}}>
+      <label for="username">Email Address:</label>
+      {{input
+        placeholder="Enter Login"
+        value=username
+      }}
+      <label for="password">Password:</label>
+      {{input
+        placeholder="Enter Password"
+        type="password"
+        value=password
+      }}
+      <button type="submit">Sign In</button>
+    </form>
+  </div>
+</div>

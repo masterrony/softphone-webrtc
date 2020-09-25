@@ -1,0 +1,148 @@
+{{#if isActive}}
+  <audio></audio>
+  <div class="call-type"></div>
+  <div class="info first">
+    <div class="name">
+      <span>{{name-format call.name}}</span>
+      <span class="inline-icon outgoing">
+        <span class="icon-wrapper">
+          <svg class="icon"><use href="img/icons.svg#outgoing"></use></svg>
+        </span>
+      </span>
+    </div>
+    <div class="number">{{phone-format call.phone}}</div>
+  </div>
+  <div class="info second">
+    <input class="actions-text {{inputClass}}" readonly value="#{{number}}" >
+  </div>
+  <div class="actions">
+    <div class="action-icons">
+      <div class="action" role="button" {{action "hangUp" call.id}}>
+        <span class="call-action-icon">
+          <span class="icon-wrapper red">
+            <svg class="icon"><use href="img/icons.svg#hangup"></use></svg>
+          </span>
+        </span>
+        <span class="call-icon-text">{{seconds-to-time callDuration}}</span>
+      </div>
+      {{!-- {{#if isVideo}}
+      <div class="action" role="button" {{action "reinviteNoVideo"}}>
+        <span class="call-action-icon">
+          <span class="icon-wrapper bg">
+            <svg class="icon"><use href="img/icons.svg#volume"></use></svg>
+          </span>
+        </span>
+        <span class="call-icon-text">Audio</span>
+      </div>
+      {{else}}
+      <div class="action" role="button" {{action "reinviteWithVideo"}}>
+        <span class="call-action-icon">
+          <span class="icon-wrapper bg">
+            <svg class="icon"><use href="img/icons.svg#video"></use></svg>
+          </span>
+        </span>
+        <span class="call-icon-text">Video</span>
+      </div>
+      {{/if}} --}}
+      <div class="action" role="button" {{action "holdCall"}}>
+        <span class="call-action-icon">
+          <span class="icon-wrapper bg">
+            <svg class="icon"><use href="img/icons.svg#pause"></use></svg>
+          </span>
+        </span>
+        <span class="call-icon-text">Hold</span>
+      </div>
+      <div class="action" role="button" {{action "showTransfer"}}>
+        <span class="call-action-icon">
+          <span class="icon-wrapper bg">
+            <svg class="icon"><use href="img/icons.svg#transfer"></use></svg>
+          </span>
+        </span>
+        <span class="call-icon-text">Transfer</span>
+      </div>
+      <div class="action" role="button" {{action "showDialpad"}}>
+        <span class="call-action-icon">
+          <span class="icon-wrapper bg">
+            <svg class="icon"><use href="img/icons.svg#dots"></use></svg>
+          </span>
+        </span>
+        <span class="call-icon-text">Dialpad</span>
+      </div>
+    </div>
+    <div class="actions-text"></div>
+  </div>
+{{/if}}
+{{#if isOnHold}}
+  <div class="call-type"></div>
+  <div class="info">
+    <div class="name">
+      <span>{{name-format call.name}}</span>
+      <span class="inline-icon outgoing">
+        <span class="icon-wrapper">
+          <svg class="icon"><use href="img/icons.svg#outgoing"></use></svg>
+        </span>
+      </span>
+    </div>
+    <div class="number">{{phone-format call.phone}}</div>
+  </div>
+  <div class="actions">
+    <div class="action-icons">
+      <div class="action" role="button" {{action "hangUp" call.id}}>
+        <span class="call-action-icon">
+          <span class="icon-wrapper red">
+            <svg class="icon"><use href="img/icons.svg#hangup"></use></svg>
+          </span>
+        </span>
+        <span class="call-icon-text">{{seconds-to-time callDuration}}</span>
+      </div>
+      <div class="action" role="button" {{action "unhold" call.id}}>
+        <span class="call-action-icon">
+          <span class="icon-wrapper green">
+            <svg class="icon"><use href="img/icons.svg#play"></use></svg>
+          </span>
+        </span>
+        <span class="call-icon-text">{{seconds-to-time holdDuration}}</span>
+      </div>
+      <div class="action" role="button" {{action "showTransfer"}}>
+        <span class="call-action-icon">
+          <span class="icon-wrapper bg">
+            <svg class="icon"><use href="img/icons.svg#transfer"></use></svg>
+          </span>
+        </span>
+        <span class="call-icon-text">Transfer</span>
+      </div>
+    </div>
+    <div class="actions-text"></div>
+  </div>
+{{/if}}
+{{#if isCalling}}
+  <div class="call-type incoming">
+    {{svg-icon class="inline-icon" icon="call"}}
+  </div>
+  <div class="info">
+    <div class="name">
+      <span>{{name-format call.name}}</span>
+      {{svg-icon class="inline-icon outgoing light-gray" icon="outgoing"}}
+    </div>
+    <div class="number">{{phone-format call.phone}}</div>
+  </div>
+  <div class="actions">
+    <div class="action-icons">
+      <div class="action" role="button">
+        <span class="call-action-icon green">
+          <span class="icon-wrapper">
+            <svg class="icon"><use href="img/icons.svg#call"></use></svg>
+          </span>
+        </span>
+      </div>
+      <div class="action" role="button" {{action "hangUp" call.id}}>
+        <span class="call-action-icon red">
+          <span class="icon-wrapper">
+            <svg class="icon"><use href="img/icons.svg#hangup"></use></svg>
+          </span>
+        </span>
+      </div>
+    </div>
+    <div class="actions-text">{{seconds-to-time duration}}</div>
+  </div>
+{{/if}}

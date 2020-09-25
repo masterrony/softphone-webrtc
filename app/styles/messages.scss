@@ -1,0 +1,269 @@
+.messages {
+  flex-grow: 9999;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: _color(base-bg);
+  overflow: hidden;
+  order: 1;
+  z-index: 3;
+  transition: width _duration(default) _misc(animation);
+
+  .header {
+    margin: 0 2.25rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    color: _color(base-light);
+  }
+
+  .menu {
+    padding: 0 .5rem;
+    cursor: pointer;
+  }
+
+  .menu-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: none;
+  }
+
+  .user {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    line-height: 2.5;
+  }
+
+  .title {
+    display: flex;
+    font-size: 1.375rem;
+    font-weight: 700;
+    line-height: 1;
+    color: _color(base-light);
+  }
+
+  .name {
+    margin-right: .5rem;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .phone {
+    color: _color(base-ultra-light);
+  }
+
+  .messages-list {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 9999;
+    flex-basis: 0;
+    justify-content: flex-start;
+    overflow-y: auto;
+    padding: 0 2.25rem;
+
+    &:empty {
+      background-image: url("../img/icons/message-new.svg");
+      background-repeat: no-repeat;
+      background-position: center calc(50% - 36px);
+
+      &:before {
+        content: 'No messages';
+        color: _color(icon);
+        font-size: 1.125rem;
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+
+  .day-divider {
+    display: flex;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: _color(base-light);
+    white-space: nowrap;
+
+    &:before,
+    &:after {
+      content: '';
+      background-color: _color(border-dark);
+      height: 1px;
+      width: 50%;
+      margin: auto;
+    }
+
+    &:before {
+      margin-right: .5rem;
+    }
+
+    &:after {
+      margin-left: .5rem;
+    }
+  }
+
+  .message {
+    max-width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    margin: 2rem 0;
+
+    .text {
+      border-radius: 2rem;
+      padding: .875rem 1.5rem;
+      color: _color(base-bg);
+      background-color: _color(theme-blue);
+      border: 1px solid transparent;
+    }
+
+    .time {
+      font-size: 0.625rem;
+      color: _color(base-ultra-light);
+      margin: .5rem 0;
+      align-self: flex-end;
+    }
+
+    &.reply {
+      align-self: flex-start;
+
+      .text {
+        border: 1px solid _color(border-dark);
+        color: _color(base-light);
+        background-color: _color(base-bg);
+      }
+
+      .time {
+        align-self: flex-start;
+      }
+    }
+  }
+
+  .input-group {
+    position: relative;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: none;
+
+    input {
+      flex-grow: 9999;
+      height: 100%;
+      padding: 0 2.25rem;
+    }
+
+    button {
+      background-color: _color(theme-blue);
+      padding: 1.5rem 3rem;
+      color: _color(base-bg);
+      font-weight: 700;
+      line-height: 1;
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+
+  .messages {
+    flex-grow: 0;
+    width: 0;
+
+    &.open {
+      width: 100vw;
+    }
+
+    .header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0;
+      padding: .5rem;
+    }
+
+    .menu-icon {
+      display: inline-flex;
+    }
+
+    .title {
+      display: none;
+    }
+
+    .name {
+      font-size: 0.875rem;
+    }
+
+    .phone {
+      font-size: 0.75rem;
+    }
+
+    .messages-list {
+      padding: 0 1rem;
+
+      div:first-child {
+        margin-top: auto;
+      }
+    }
+
+    .user {
+      flex-direction: column;
+      align-items: center;
+      line-height: 1.5;
+    }
+
+    .day-divider {
+
+      &:before,
+      &:after {
+        content: none;
+      }
+    }
+
+    .message,
+    .reply {
+      margin: 1rem 0 0;
+
+      .text {
+        padding: 0.625rem 1.5rem;
+      }
+    }
+
+    .input-group {
+      box-shadow: 0 -.125rem .375rem rgba(0, 0, 0, .1);
+
+      input {
+        padding: 0 1rem;
+      }
+
+      button {
+        border-radius: unset;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+
+  .messages {
+    position: absolute;
+    width: 0;
+
+    &.open {
+      width: 100vw;
+
+      & ~ :after {
+        content: "";
+        position: absolute;
+        background-color: _color(placeholder);
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}
+

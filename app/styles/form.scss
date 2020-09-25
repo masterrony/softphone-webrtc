@@ -1,0 +1,72 @@
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  line-height: 2;
+}
+
+input[type="text"],
+input[type="password"] {
+  line-height: 2;
+  border-radius: unset;
+  border: none;
+  outline: none;
+}
+
+button {
+  padding: 1rem;
+  background-color: _color(theme-blue);
+  color: _color(base-bg);
+  font-weight: 700;
+  line-height: 1;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.volume-range {
+  width: 6rem;
+  height: .5rem;
+  margin: 1rem 0;
+  transform: rotate(90deg) translateX(2.5rem) translateY(2rem);
+  -webkit-appearance: none;
+  outline: none;
+  background-color: #2da5f1;
+  border-radius: .5rem;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.volume-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  border: none;
+  background: _color(base-bg);
+  box-shadow: 0 -0.125rem 0.375rem rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.volume-range::-moz-range-thumb {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  border: none;
+  background: _color(base-bg);
+  box-shadow: 0 -0.125rem 0.375rem rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.volume-range::-moz-focus-outer {
+  border: 0;
+}
+
+.is-muted {
+  color: red !important;
+}

@@ -1,0 +1,243 @@
+.contacts {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  flex-basis: 333px;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  overflow: hidden;
+  order: 0;
+  background-color: _color(base-bg);
+  transition: width _duration(default) _misc(animation);
+  z-index: 3;
+  border-right: 1px solid rgba(216, 216, 216, 0.6);
+
+  .logo-row-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .logo {
+    padding: 0 1rem;
+    height: 2rem;
+
+    img {
+      height: 100%;
+    }
+  }
+
+  .reg-status {
+    padding: .25rem 0;
+  }
+
+  .profile {
+    padding: .5rem 0;
+    font-size: .75rem;
+    color: _color(placeholder);
+    cursor: pointer;
+  }
+
+  .phone-dial {
+    padding: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+
+    input {
+      border: 2px solid _color(border-dark);
+      border-radius: _size(radius);
+      height: 3.375rem;
+      width: 100%;
+      padding: 0 3rem 0 1rem;
+      box-sizing: border-box;
+    }
+
+    .call-button {
+      position: absolute;
+      padding: .5rem;
+      top: 1.5rem;
+      right: 1.5rem;
+      cursor: pointer;
+
+      div {
+        transition: color _duration(default) _misc(animation);
+      }
+
+      &:hover {
+
+        div {
+          color: _color(theme-blue);
+        }
+      }
+    }
+
+    .call-button-second {
+      right: 3.5rem !important;
+    }
+  }
+
+  .contacts-list {
+    width: 100%;
+    flex-basis: 0;
+    flex-grow: 9999;
+    overflow-y: auto;
+  }
+
+  .contact {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    height: 4rem;
+    padding: .5rem 1rem;
+    border-bottom: 1px solid _color(border);
+    color: _color(base);
+
+    &:hover,
+    &.selected {
+      background-color: _color(hover);
+
+      .actions {
+        opacity: 1;
+      }
+    }
+
+    &.active {
+      background-color: _color(theme-green);
+      color: _color(base-bg);
+
+      .status {
+        color: _color(contact-inverted);
+      }
+
+      .actions {
+        display: none;
+      }
+
+      .action-icon {
+        color: _color(base-bg);
+      }
+
+      .call-time {
+        display: flex;
+      }
+    }
+  }
+
+  .name {
+    display: inline-flex;
+    align-items: center;
+    font-size: .875rem;
+
+    span {
+      cursor: pointer;
+    }
+  }
+
+  .status {
+    font-size: .875rem;
+    color: _color(contact-light);
+    color: _color(theme-green);
+  }
+
+  .actions {
+    display: flex;
+    opacity: 0;
+    transition: opacity _duration(default) _misc(animation);
+  }
+
+  .action {
+    cursor: pointer;
+    display: flex;
+    margin: 0 0 0 1rem;
+  }
+
+  .call-time {
+    display: none;
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+
+  .contact-action-icon {
+    width: 24px;
+    height: 24px;
+    color: _color(theme-blue);
+  }
+
+  .call-time-icon {
+    width: 12px;
+    height: 12px;
+    margin-right: .5rem;
+    color: _color(base-bg);
+  }
+}
+
+@media (max-width: 1440px) {
+
+  .contacts {
+    flex-shrink: 9999;
+
+    .logo {
+      display: none;
+    }
+
+    .profile {
+      display: none;
+    }
+
+    .phone-dial {
+      padding: 0;
+
+      input {
+        border: none;
+      }
+
+      .call-button {
+        top: .5rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+
+  .contacts {
+    position: absolute;
+    width: 0;
+
+    &.open {
+      width: 333px;
+
+      & ~ .calls {
+        order: 1;
+      }
+
+      & ~ .messages {
+        order: 2;
+      }
+
+      & ~ :after {
+        content: "";
+        position: absolute;
+        background-color: _color(placeholder);
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    .phone-dial {
+      padding: 1rem;
+
+      input {
+        border: 2px solid _color(border-dark);
+      }
+
+      .call-button {
+        top: 1.5rem;
+      }
+    }
+  }
+}

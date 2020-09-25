@@ -1,0 +1,23 @@
+<div class="background" {{action "closeModal" preventDefault=false}}>  
+  <div class="close" role="button" {{action "closeModal"}}>
+    <span class="control-icon">
+      <svg class="icon"><use href="img/icons.svg#close"></use></svg>
+    </span>
+  </div>
+  <div class="window" tabindex="1" role="dialog" {{action "supressClose" bubbles=false}} >
+    <div class="content">
+      <div class="header">
+        <span>Options</span>
+      </div>
+      <div class="options-row" {{action "toggleSIPTrace" bubbles=false }} >
+        <input type="checkbox" id="sip-trace-enabled" checked={{ if sip_trace_enable "checked" }} >
+        <label for="sip-trace-enabled">&nbsp;SIP Trace Enabled</label>
+      </div>
+      <div class="footer" >
+        <div class="action" role="button" {{action "closeModal"}}>
+          <div class="icon-text">Close</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
